@@ -6,7 +6,7 @@ require 'review_nagger'
 nagger = Nagger.new
 scheduler = Rufus::Scheduler.new
 
-if ARGV[0] == '-n'
+if ARGV.include?('-n') || ARGV.include?('-d')
   nagger.run!
   exit
 end

@@ -18,7 +18,12 @@ class Nagger
       AppConfig::SLACK_CHANNEL
     ]
 
-    notify_slack!(message)
+    unless ARGV.include?('-d')
+      notify_slack!(message)
+    end
+  rescue GitLab::ProjectNotFound
+    $stderr << "GitLab project not found, check your access token!\n"
+    exit 1
   end
 
   def get_merge_requests

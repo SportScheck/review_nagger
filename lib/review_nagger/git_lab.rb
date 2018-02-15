@@ -1,4 +1,6 @@
 class GitLab
+  class ProjectNotFound < StandardError; end
+
   include HTTParty
   base_uri AppConfig::GITLAB_ENDPOINT
 
@@ -101,6 +103,8 @@ class GitLab
           return project['id']
         end
       end
+
+      raise ProjectNotFound
     end
   end
 end
