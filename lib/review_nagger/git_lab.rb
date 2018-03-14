@@ -13,7 +13,7 @@ class GitLab
   def merge_requests
     path = '/projects/%s/merge_requests?state=%s&per_page=%s' % [
       project_id,
-      :opened,
+      'opened',
       100
     ]
 
